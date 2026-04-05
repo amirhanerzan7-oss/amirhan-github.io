@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Профессиональная система управления мероприятиями и регистрации участников" />
+  <title>EventFlow — Управление мероприятиями</title>
+  <!-- Шрифты: современная геометрическая гарнитура -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Навигация -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Основная навигация">
+      <a href="#hero" class="logo">
+        <span class="logo-mark" aria-hidden="true"></span>
+        EventFlow
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-links">
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#events">Мероприятия</a></li>
+        <li><a href="#create">Создать</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a href="#create" class="btn btn-primary btn-sm nav-cta">Новое мероприятие</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Герой-блок -->
+    <section id="hero" class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <p class="hero-badge">Платформа для организаторов</p>
+        <h1 class="hero-title">Система управления мероприятиями</h1>
+        <p class="hero-subtitle">
+          Планируйте события, собирайте заявки и ведите список участников в одном месте.
+          Быстрый старт без сложной настройки — подходит для конференций, воркшопов и встреч сообщества.
+        </p>
+        <p class="hero-credit">
+          Разработано студентом колледжа AKSIT — <strong>Амирхан</strong>
+        </p>
+        <div class="hero-actions">
+          <a href="#create" class="btn btn-primary btn-lg">Создать мероприятие</a>
+          <a href="#events" class="btn btn-outline btn-lg">Зарегистрироваться</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value" id="stat-events">0</span>
+            <span class="stat-label">активных мероприятий</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="stat-reg">0</span>
+            <span class="stat-label">регистраций</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Список мероприятий -->
+    <section id="events" class="section events-section">
+      <div class="container">
+        <header class="section-head">
+          <h2>Мероприятия</h2>
+          <p>Выберите событие и оставьте заявку — организатор получит ваши контакты.</p>
+        </header>
+        <div id="events-list" class="events-grid" role="list"></div>
+        <p id="events-empty" class="empty-state hidden">Пока нет мероприятий. Создайте первое — кнопка ниже.</p>
+      </div>
+    </section>
+
+    <!-- Форма создания -->
+    <section id="create" class="section create-section">
+      <div class="container create-layout">
+        <div class="create-copy">
+          <h2>Создать мероприятие</h2>
+          <p>Заполните форму — событие появится в общем списке и станет доступно для регистрации.</p>
+          <ul class="feature-list">
+            <li>Дата и описание в карточке</li>
+            <li>Регистрации сохраняются в браузере</li>
+            <li>Можно открыть сайт с другого устройства — данные локальны для этого браузера</li>
+          </ul>
+        </div>
+        <form id="form-create" class="card form-card" novalidate>
+          <div class="form-group">
+            <label for="event-title">Название <span class="req">*</span></label>
+            <input type="text" id="event-title" name="title" autocomplete="off" placeholder="Например: IT-митап Алматы" maxlength="120" />
+            <span class="field-error" data-for="event-title"></span>
+          </div>
+          <div class="form-group">
+            <label for="event-date">Дата и время <span class="req">*</span></label>
+            <input type="datetime-local" id="event-date" name="date" />
+            <span class="field-error" data-for="event-date"></span>
+          </div>
+          <div class="form-group">
+            <label for="event-desc">Описание <span class="req">*</span></label>
+            <textarea id="event-desc" name="description" rows="4" placeholder="Программа, место, для кого событие…" maxlength="2000"></textarea>
+            <span class="field-error" data-for="event-desc"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Опубликовать мероприятие</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Контакты (якорь для футера навигации) -->
+    <section id="contacts" class="section contacts-banner">
+      <div class="container contacts-inner">
+        <div>
+          <h2>Нужна помощь?</h2>
+          <p>Напишите в WhatsApp — ответим по организации демо и вопросам по сервису.</p>
+        </div>
+        <a href="https://wa.me/87754631285" class="btn btn-light btn-lg" target="_blank" rel="noopener noreferrer">Открыть WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="logo-mark small" aria-hidden="true"></span>
+        <strong>EventFlow</strong>
+        <p>Система управления мероприятиями и регистрации участников.</p>
+      </div>
+      <div>
+        <h3 class="footer-heading">Контакты</h3>
+        <p>Телефон / WhatsApp: <a href="https://wa.me/87754631285">+7 775 463 1285</a></p>
+        <p>Email: <a href="mailto:events@eventflow.local">events@eventflow.local</a></p>
+      </div>
+      <div>
+        <h3 class="footer-heading">Навигация</h3>
+        <ul class="footer-links">
+          <li><a href="#hero">Главная</a></li>
+          <li><a href="#events">Мероприятия</a></li>
+          <li><a href="#create">Создать</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year"></span> EventFlow. Колледж AKSIT — Амирхан.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Плавающая кнопка WhatsApp -->
+  <a href="https://wa.me/87754631285" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Модальное окно регистрации -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal">
+      <button type="button" class="modal-close" aria-label="Закрыть">&times;</button>
+      <h2 id="modal-title">Регистрация</h2>
+      <p id="modal-event-name" class="modal-event-name"></p>
+      <form id="form-register" novalidate>
+        <input type="hidden" id="register-event-id" name="eventId" />
+        <div class="form-group">
+          <label for="reg-name">Имя <span class="req">*</span></label>
+          <input type="text" id="reg-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" maxlength="80" />
+          <span class="field-error" data-for="reg-name"></span>
+        </div>
+        <div class="form-group">
+          <label for="reg-phone">Телефон <span class="req">*</span></label>
+          <input type="tel" id="reg-phone" name="phone" autocomplete="tel" placeholder="+7 777 123 45 67" maxlength="20" />
+          <span class="field-error" data-for="reg-phone"></span>
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email <span class="req">*</span></label>
+          <input type="email" id="reg-email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="120" />
+          <span class="field-error" data-for="reg-email"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+      </form>
+      <div id="register-success" class="register-success hidden" role="status">
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <p class="success-title">Вы успешно зарегистрированы</p>
+        <p class="success-text">Мы передали ваши данные организатору. Ожидайте подтверждения на указанный email или телефон.</p>
+        <button type="button" class="btn btn-outline btn-block" id="modal-done">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
